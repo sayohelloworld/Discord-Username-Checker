@@ -2,11 +2,11 @@ import os
 import sys
 import time
 
-from checker import check_user
-from validator import validate_username
+from .checker import check_user
+from .validator import validate_username
 
 VERSION = "1.0.0"
-AUTHOR = "Bloxet"
+AUTHOR = "Sayonara"
 
 
 def clear():
@@ -39,7 +39,6 @@ def credits():
     print(f"Version      : {VERSION}")
     print("Language     : Python")
     print("HTTP Library : Requests")
-    print("Platform     : Windows")
     print("-" * 50)
 
     input("\nPress ENTER to return...")
@@ -114,14 +113,18 @@ def main_menu():
 
         if choice == "1":
             check_single()
+
         elif choice == "2":
             check_multiple()
+
         elif choice == "3":
             credits()
+
         elif choice == "4":
             print("\nThank you for using Discord Username Checker.")
             time.sleep(1)
             break
+
         else:
             print("\n[!] Invalid option.")
             time.sleep(1)
@@ -131,5 +134,8 @@ if __name__ == "__main__":
     try:
         main_menu()
     except KeyboardInterrupt:
-        print("\n\nApplication interrupted.")
-        sys.exit(0)
+        print("\nApplication interrupted.")
+        input("Press ENTER to close...")
+    except Exception as error:
+        print(f"\n[FATAL ERROR] {error}")
+        input("\nPress ENTER to close...")
