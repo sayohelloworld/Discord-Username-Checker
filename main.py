@@ -1,21 +1,21 @@
+
 import os
 import subprocess
 import sys
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-APP_FILE = os.path.join(PROJECT_DIR, "src", "app.py")
 
 
 def main():
     if os.name != "nt":
-        print("This application requires Windows.")
-        return
+        raise OSError("Windows is required.")
 
     subprocess.Popen(
         [
-            "cmd.exe",
-            "/k",
-            f'"{sys.executable}" "{APP_FILE}"'
+            sys.executable,
+            "-u",
+            "-m",
+            "src.app"
         ],
         cwd=PROJECT_DIR,
         creationflags=subprocess.CREATE_NEW_CONSOLE
